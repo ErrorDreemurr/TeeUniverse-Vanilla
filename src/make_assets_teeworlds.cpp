@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
 	int GroupId_Death = -1;
 	int GroupId_Entities = -1;
 
-	int NumZones;
+	int NumZones = 0;
 	//Zones
 	{
 		CSubPath SubPath;
