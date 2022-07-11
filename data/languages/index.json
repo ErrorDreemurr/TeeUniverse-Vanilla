@@ -7,6 +7,10 @@
 	{
 		"file": "fr",
 		"name": "Français"
+	},
+	{
+		"file": "cn-sim",
+		"name": "简体中文"
 	}
 ]
 }
