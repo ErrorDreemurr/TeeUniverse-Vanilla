@@ -58,20 +58,6 @@
 	pKernel->AssetsManager()->SetAssetValue_Hard<int>(MaterialPath, CondPath, CAsset_TilingMaterial::RULE_CONDITION_RELPOSY, rely);\
 }
 
-#define CREATE_ZONEINDEX_NOUSE() {\
-	SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());\
-	pAsset->SetIndexUsed(SubPath, false);\
-}
-
-#define CREATE_WORLDCHANGE_ZONE(zonename, id) {\
-	SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());\
-	pAsset->SetIndexTitle(SubPath, zonename);\
-	pAsset->SetIndexColor(SubPath, 1.0f);\
-	pAsset->SetIndexBorderIndex(SubPath, 1);\
-	pAsset->SetIndexBorderColor(SubPath, vec4(255, 255/id, 255, 1.0f));\
-	pAsset->SetIndexGroup(SubPath, GroupId_Physics);\
-}
-
 int main(int argc, char* argv[])
 {
 	CSharedKernel* pKernel = new CSharedKernel();
@@ -97,9 +83,7 @@ int main(int argc, char* argv[])
 	CAssetPath TeeWorldsZoneTypePath;
 	int GroupId_Physics = -1;
 	int GroupId_Death = -1;
-	int GroupId_Entities = -1;
 
-	int NumZones;
 	//Zones
 	{
 		CSubPath SubPath;
@@ -110,24 +94,20 @@ int main(int argc, char* argv[])
 		
 		GroupId_Physics = pAsset->AddGroup();
 		GroupId_Death = pAsset->AddGroup();
-		GroupId_Entities = pAsset->AddGroup();
 		
 		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Physics), "Physics");
 		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Death), "Death");
-		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Entities), "Entities");
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
 		pAsset->SetIndexTitle(SubPath, "Air");
 		pAsset->SetIndexColor(SubPath, vec4(1.0f, 1.0f, 1.0f, 0.0f));
 		pAsset->SetIndexGroup(SubPath, GroupId_Physics);
-		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
 		pAsset->SetIndexTitle(SubPath, "Hookable Ground");
 		pAsset->SetIndexColor(SubPath, 1.0f);
 		pAsset->SetIndexBorderIndex(SubPath, 1);
 		pAsset->SetIndexGroup(SubPath, GroupId_Physics);
-		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
 		pAsset->SetIndexTitle(SubPath, "Death");
@@ -135,7 +115,6 @@ int main(int argc, char* argv[])
 		pAsset->SetIndexBorderIndex(SubPath, 2);
 		pAsset->SetIndexBorderColor(SubPath, vec4(1.0f, 0.0f, 0.0f, 1.0f));
 		pAsset->SetIndexGroup(SubPath, GroupId_Death);
-		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
 		pAsset->SetIndexTitle(SubPath, "Unhookable Ground");
@@ -143,53 +122,6 @@ int main(int argc, char* argv[])
 		pAsset->SetIndexBorderIndex(SubPath, 1);
 		pAsset->SetIndexBorderColor(SubPath, vec4(149.0f/255.0f, 190.0f/255.0f, 222.0f/255.0f, 1.0f));
 		pAsset->SetIndexGroup(SubPath, GroupId_Physics);
-		NumZones++;
-
-		for(int i = 1;i<=10;i++)
-		{
-			char aBuf[256];
-			str_format(aBuf, sizeof(aBuf), "World %i door", i);
-			CREATE_WORLDCHANGE_ZONE(aBuf, i)
-			NumZones++;
-		}
-
-		// Entities
-		for(int i = NumZones-1;i<191;i++)
-		{
-			CREATE_ZONEINDEX_NOUSE()
-		}
-		
-		{
-			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Spawn");
-			pAsset->SetIndexColor(SubPath, 1.0f);
-			pAsset->SetIndexBorderIndex(SubPath, 1);
-			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
-			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
-		}
-
-		CREATE_ZONEINDEX_NOUSE()
-		CREATE_ZONEINDEX_NOUSE()
-		CREATE_ZONEINDEX_NOUSE()
-		CREATE_ZONEINDEX_NOUSE()
-
-		{
-			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Health");
-			pAsset->SetIndexColor(SubPath, 1.0f);
-			pAsset->SetIndexBorderIndex(SubPath, 1);
-			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 100.0f, 160.0f, 1.0f));
-			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
-		}
-
-		{
-			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Armor");
-			pAsset->SetIndexColor(SubPath, 1.0f);
-			pAsset->SetIndexBorderIndex(SubPath, 1);
-			pAsset->SetIndexBorderColor(SubPath, vec4(10.0f, 100.0f, 160.0f, 1.0f));
-			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
-		}
 	}
 	
 	//EntityType, Spawn
