@@ -203,7 +203,7 @@ protected:
 		
 	public:
 		CDeleteButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu) :
-			gui::CButton(pAssetsEditor, _LSTRING("Delete"), pAssetsEditor->m_Path_Sprite_IconDelete),
+			gui::CButton(pAssetsEditor, _LSTRING("删除"), pAssetsEditor->m_Path_Sprite_IconDelete),
 			m_pAssetsEditor(pAssetsEditor),
 			m_pContextMenu(pContextMenu)
 		{
@@ -366,10 +366,10 @@ public:
 		{
 			CContextMenu* pMenu = new CContextMenu(m_pAssetsEditor);
 			
-			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("Move to the back"), m_pAssetsEditor->m_Path_Sprite_IconMoveBack, -99999999), false);
-			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("Move backward"), m_pAssetsEditor->m_Path_Sprite_IconUp, -1), false);
-			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("Move forward"), m_pAssetsEditor->m_Path_Sprite_IconDown, 1), false);
-			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("Move to the front"), m_pAssetsEditor->m_Path_Sprite_IconMoveFront, 99999999), false);
+			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("移动到后面"), m_pAssetsEditor->m_Path_Sprite_IconMoveBack, -99999999), false);
+			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("向上移动"), m_pAssetsEditor->m_Path_Sprite_IconUp, -1), false);
+			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("向下移动"), m_pAssetsEditor->m_Path_Sprite_IconDown, 1), false);
+			pMenu->List()->Add(new CRelMoveButton(m_pAssetsEditor, pMenu, _LSTRING("移动到前面"), m_pAssetsEditor->m_Path_Sprite_IconMoveFront, 99999999), false);
 			pMenu->List()->AddSeparator();
 			pMenu->List()->Add(new CDeleteButton(m_pAssetsEditor, pMenu));
 			
@@ -660,7 +660,7 @@ protected:
 	
 public:
 	ImportImageButton(CGuiEditor* pAssetsEditor) :
-		gui::CButton(pAssetsEditor, _LSTRING("Replace"), pAssetsEditor->m_Path_Sprite_IconLoad),
+		gui::CButton(pAssetsEditor, _LSTRING("替换"), pAssetsEditor->m_Path_Sprite_IconLoad),
 		m_pAssetsEditor(pAssetsEditor)
 	{
 		
@@ -680,7 +680,7 @@ protected:
 	
 public:
 	ExportImageButton(CGuiEditor* pAssetsEditor) :
-		gui::CButton(pAssetsEditor, _LSTRING("Export"), pAssetsEditor->m_Path_Sprite_IconSave),
+		gui::CButton(pAssetsEditor, _LSTRING("导出"), pAssetsEditor->m_Path_Sprite_IconSave),
 		m_pAssetsEditor(pAssetsEditor)
 	{
 		
@@ -709,7 +709,7 @@ protected:
 	
 public:
 	DilateImageButton(CGuiEditor* pAssetsEditor) :
-		gui::CButton(pAssetsEditor, _LSTRING("Fix color of transparent pixels"), pAssetsEditor->m_Path_Sprite_IconImage),
+		gui::CButton(pAssetsEditor, _LSTRING("修复贴图颜色"), pAssetsEditor->m_Path_Sprite_IconImage),
 		m_pAssetsEditor(pAssetsEditor)
 	{
 		
@@ -738,7 +738,7 @@ protected:
 	
 public:
 	AddBorderButton(CGuiEditor* pAssetsEditor) :
-		gui::CButton(pAssetsEditor, _LSTRING("Add border around grid cells"), pAssetsEditor->m_Path_Sprite_IconImage),
+		gui::CButton(pAssetsEditor, _LSTRING("在网格旁添加边框"), pAssetsEditor->m_Path_Sprite_IconImage),
 		m_pAssetsEditor(pAssetsEditor)
 	{
 		
@@ -753,16 +753,16 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_Image_Asset()
 	
 	AddField_AssetProperties(pTab);
 	
-	AddField_Integer_NoEdit(pTab, CAsset_Image::DATA_WIDTH, _LSTRING("Width"));
-	AddField_Integer_NoEdit(pTab, CAsset_Image::DATA_HEIGHT, _LSTRING("Height"));
+	AddField_Integer_NoEdit(pTab, CAsset_Image::DATA_WIDTH, _LSTRING("宽"));
+	AddField_Integer_NoEdit(pTab, CAsset_Image::DATA_HEIGHT, _LSTRING("长"));
 	//AddField_Integer_NoEdit(pTab, CAsset_Image::TEXTURE_ID, _LSTRING("Texture Id"));
-	AddField_Integer(pTab, CAsset_Image::TEXELSIZE, _LSTRING("Texel size"));
-	AddField_Integer(pTab, CAsset_Image::GRIDWIDTH, _LSTRING("Grid width"));
-	AddField_Integer(pTab, CAsset_Image::GRIDHEIGHT, _LSTRING("Grid height"));
-	AddField_Integer(pTab, CAsset_Image::GRIDSPACING, _LSTRING("Grid spacing"));
+	AddField_Integer(pTab, CAsset_Image::TEXELSIZE, _LSTRING("纹理大小"));
+	AddField_Integer(pTab, CAsset_Image::GRIDWIDTH, _LSTRING("网格宽度"));
+	AddField_Integer(pTab, CAsset_Image::GRIDHEIGHT, _LSTRING("网格长度"));
+	AddField_Integer(pTab, CAsset_Image::GRIDSPACING, _LSTRING("网格间距"));
 	
 	CImageTilingToggle* pWidget = new CImageTilingToggle(m_pAssetsEditor);
-	AddField(pTab, pWidget, _LSTRING("Compatible with tiles"));
+	AddField(pTab, pWidget, _LSTRING("与贴图兼容"));
 	
 	pTab->AddSeparator();
 	
@@ -786,15 +786,15 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_Sprite_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Sprite"), AssetsEditor()->m_Path_Sprite_IconSprite);
+	AddTab(pTab, _LSTRING("贴图"), AssetsEditor()->m_Path_Sprite_IconSprite);
 	
 	AddField_AssetProperties(pTab);
 	
-	AddField_Asset(pTab, CAsset_Sprite::IMAGEPATH, CAsset_Image::TypeId, _LSTRING("Image"));
-	AddField_Integer(pTab, CAsset_Sprite::X, _LSTRING("X"));
-	AddField_Integer(pTab, CAsset_Sprite::Y, _LSTRING("Y"));
-	AddField_Integer(pTab, CAsset_Sprite::WIDTH, _LSTRING("Width"));
-	AddField_Integer(pTab, CAsset_Sprite::HEIGHT, _LSTRING("Height"));
+	AddField_Asset(pTab, CAsset_Sprite::IMAGEPATH, CAsset_Image::TypeId, _LSTRING("图片"));
+	AddField_Integer(pTab, CAsset_Sprite::X, _LSTRING("X轴"));
+	AddField_Integer(pTab, CAsset_Sprite::Y, _LSTRING("Y轴"));
+	AddField_Integer(pTab, CAsset_Sprite::WIDTH, _LSTRING("宽"));
+	AddField_Integer(pTab, CAsset_Sprite::HEIGHT, _LSTRING("长"));
 	
 	return pTab;
 }
@@ -803,7 +803,7 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_Map_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map"), AssetsEditor()->m_Path_Sprite_IconMap);
+	AddTab(pTab, _LSTRING("地图"), AssetsEditor()->m_Path_Sprite_IconMap);
 	
 	AddField_AssetProperties(pTab);
 	
@@ -814,16 +814,16 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapGroup_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map Group"), AssetsEditor()->m_Path_Sprite_IconFolder);
+	AddTab(pTab, _LSTRING("地图组"), AssetsEditor()->m_Path_Sprite_IconFolder);
 	
 	AddField_AssetProperties(pTab);
 	
-	AddField_Vec2(pTab, CAsset_MapGroup::POSITION_X, CAsset_MapGroup::POSITION_Y, _LSTRING("Position"));	
-	AddField_Vec2(pTab, CAsset_MapGroup::HARDPARALLAX_X, CAsset_MapGroup::HARDPARALLAX_Y, _LSTRING("Parallax"));	
+	AddField_Vec2(pTab, CAsset_MapGroup::POSITION_X, CAsset_MapGroup::POSITION_Y, _LSTRING("坐标"));	
+	AddField_Vec2(pTab, CAsset_MapGroup::HARDPARALLAX_X, CAsset_MapGroup::HARDPARALLAX_Y, _LSTRING("视觉差异"));	
 	pTab->AddSeparator();
-	AddField_Bool(pTab, CAsset_MapGroup::CLIPPING, _LSTRING("Clipping"));	
-	AddField_Vec2(pTab, CAsset_MapGroup::CLIPPOSITION_X, CAsset_MapGroup::CLIPPOSITION_Y, _LSTRING("Clip Position"));	
-	AddField_Vec2(pTab, CAsset_MapGroup::CLIPSIZE_X, CAsset_MapGroup::CLIPSIZE_Y, _LSTRING("Clip Size"));
+	AddField_Bool(pTab, CAsset_MapGroup::CLIPPING, _LSTRING("透视"));	
+	AddField_Vec2(pTab, CAsset_MapGroup::CLIPPOSITION_X, CAsset_MapGroup::CLIPPOSITION_Y, _LSTRING("透视坐标"));	
+	AddField_Vec2(pTab, CAsset_MapGroup::CLIPSIZE_X, CAsset_MapGroup::CLIPSIZE_Y, _LSTRING("透视大小"));
 	
 	return pTab;
 }
@@ -841,7 +841,7 @@ protected:
 	
 public:
 	CMapLayerTilesButton_ApplyStyle(CGuiEditor* pAssetsEditor) :
-		gui::CButton(pAssetsEditor, _LSTRING("Apply style"), pAssetsEditor->m_Path_Sprite_IconSystem),
+		gui::CButton(pAssetsEditor, _LSTRING("应用"), pAssetsEditor->m_Path_Sprite_IconSystem),
 		m_pAssetsEditor(pAssetsEditor)
 	{ }
 };
@@ -859,7 +859,7 @@ protected:
 	
 public:
 	CMapLayerTilesButton_HFlip(CGuiEditor* pAssetsEditor) :
-		gui::CButton(pAssetsEditor, _LSTRING("Vertical Mirror"), pAssetsEditor->m_Path_Sprite_IconHFlip),
+		gui::CButton(pAssetsEditor, _LSTRING("垂直反转"), pAssetsEditor->m_Path_Sprite_IconHFlip),
 		m_pAssetsEditor(pAssetsEditor)
 	{ }
 };
@@ -877,7 +877,7 @@ protected:
 	
 public:
 	CMapLayerTilesButton_VFlip(CGuiEditor* pAssetsEditor) :
-		gui::CButton(pAssetsEditor, _LSTRING("Horizontal Mirror"), pAssetsEditor->m_Path_Sprite_IconVFlip),
+		gui::CButton(pAssetsEditor, _LSTRING("水平反转"), pAssetsEditor->m_Path_Sprite_IconVFlip),
 		m_pAssetsEditor(pAssetsEditor)
 	{ }
 };
@@ -886,29 +886,29 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapLayerTiles_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map Layer Tiles"), AssetsEditor()->m_Path_Sprite_IconTiles);
+	AddTab(pTab, _LSTRING("地图贴图层"), AssetsEditor()->m_Path_Sprite_IconTiles);
 	
 	AddField_AssetProperties(pTab);
 	
-	AddField_MapGroups(pTab, CAsset_MapLayerTiles::PARENTPATH, _LSTRING("Group"));
-	AddField_Asset(pTab, CAsset_MapLayerTiles::SOURCEPATH, CAsset_MapZoneTiles::TypeId, _LSTRING("Source"));
-	AddField_TileLayerStyle(pTab, CAsset_MapLayerTiles::STYLEPATH, _LSTRING("Style"));
-	AddField_Color(pTab, CAsset_MapLayerTiles::COLOR, _LSTRING("Color"));
-	AddField_Seed(pTab, CAsset_MapLayerTiles::RANDOMSEED, _LSTRING("Seed"));
+	AddField_MapGroups(pTab, CAsset_MapLayerTiles::PARENTPATH, _LSTRING("组"));
+	AddField_Asset(pTab, CAsset_MapLayerTiles::SOURCEPATH, CAsset_MapZoneTiles::TypeId, _LSTRING("来源"));
+	AddField_TileLayerStyle(pTab, CAsset_MapLayerTiles::STYLEPATH, _LSTRING("风格"));
+	AddField_Color(pTab, CAsset_MapLayerTiles::COLOR, _LSTRING("颜色"));
+	AddField_Seed(pTab, CAsset_MapLayerTiles::RANDOMSEED, _LSTRING("随机值"));
 	
 	{
 		CMemberComboBox* pComboBox = new CMemberComboBox(AssetsEditor(), CAsset_MapLayerTiles::LEVELOFDETAIL);
-		pComboBox->Add(_LSTRING("Low"));
-		pComboBox->Add(_LSTRING("High"));
-		AddField(pTab, pComboBox, _LSTRING("Level of detail"));
+		pComboBox->Add(_LSTRING("低"));
+		pComboBox->Add(_LSTRING("高"));
+		AddField(pTab, pComboBox, _LSTRING("细节等级"));
 	}
 	
 	pTab->AddSeparator();
 	
-	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::POSITIONX, _LSTRING("Position X"));
-	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::POSITIONY, _LSTRING("Position Y"));
-	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::TILE_WIDTH, _LSTRING("Width"));
-	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::TILE_HEIGHT, _LSTRING("Height"));
+	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::POSITIONX, _LSTRING("X坐标"));
+	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::POSITIONY, _LSTRING("Y坐标"));
+	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::TILE_WIDTH, _LSTRING("宽"));
+	AddField_Integer_MapLayerTiles_NoSource(pTab, CAsset_MapLayerTiles::TILE_HEIGHT, _LSTRING("高"));
 	
 	pTab->AddSeparator();
 	
@@ -1020,21 +1020,21 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapLayerQuads_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map Layer Quads"), AssetsEditor()->m_Path_Sprite_IconQuad);
+	AddTab(pTab, _LSTRING("多边形贴图"), AssetsEditor()->m_Path_Sprite_IconQuad);
 	
 	AddField_AssetProperties(pTab);
 	
-	AddField_MapGroups(pTab, CAsset_MapLayerQuads::PARENTPATH, _LSTRING("Group"));
-	AddField_Asset(pTab, CAsset_MapLayerQuads::IMAGEPATH, CAsset_Image::TypeId, _LSTRING("Image"));
+	AddField_MapGroups(pTab, CAsset_MapLayerQuads::PARENTPATH, _LSTRING("组"));
+	AddField_Asset(pTab, CAsset_MapLayerQuads::IMAGEPATH, CAsset_Image::TypeId, _LSTRING("图片"));
 	
 	{
 		CMemberComboBox* pComboBox = new CMemberComboBox(AssetsEditor(), CAsset_MapLayerQuads::LEVELOFDETAIL);
-		pComboBox->Add(_LSTRING("Low"));
-		pComboBox->Add(_LSTRING("High"));
-		AddField(pTab, pComboBox, _LSTRING("Level of detail"));
+		pComboBox->Add(_LSTRING("低"));
+		pComboBox->Add(_LSTRING("高"));
+		AddField(pTab, pComboBox, _LSTRING("细节等级"));
 	}
 	
-	AddField_Integer_NoEdit(pTab, CAsset_MapLayerQuads::QUAD_ARRAYSIZE, _LSTRING("Number of quads"));
+	AddField_Integer_NoEdit(pTab, CAsset_MapLayerQuads::QUAD_ARRAYSIZE, _LSTRING("多边形数量"));
 	
 	pTab->Add(new CSubItemList_MapLayerQuads_Quad(AssetsEditor()), true);
 	
@@ -1042,48 +1042,48 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapLayerQuads_Asset()
 		gui::CVListLayout* pQuadEditor = new CSubItemEditor_Quad(AssetsEditor());
 		pTab->Add(pQuadEditor);
 		
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_PIVOT_X, CAsset_MapLayerQuads::QUAD_PIVOT_Y, _LSTRING("Position"));
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_SIZE_X, CAsset_MapLayerQuads::QUAD_SIZE_Y, _LSTRING("Size"));
-		AddField_Angle(pQuadEditor, CAsset_MapLayerQuads::QUAD_ANGLE, _LSTRING("Angle"));
-		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR, _LSTRING("Color"));
-		AddField_Animations(pQuadEditor, CAsset_MapLayerQuads::QUAD_ANIMATIONPATH, _LSTRING("Animation"));
-		AddField_Duration(pQuadEditor, CAsset_MapLayerQuads::QUAD_ANIMATIONOFFSET, _LSTRING("Animation Offset"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_PIVOT_X, CAsset_MapLayerQuads::QUAD_PIVOT_Y, _LSTRING("坐标"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_SIZE_X, CAsset_MapLayerQuads::QUAD_SIZE_Y, _LSTRING("大小"));
+		AddField_Angle(pQuadEditor, CAsset_MapLayerQuads::QUAD_ANGLE, _LSTRING("方向"));
+		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR, _LSTRING("颜色"));
+		AddField_Animations(pQuadEditor, CAsset_MapLayerQuads::QUAD_ANIMATIONPATH, _LSTRING("动画"));
+		AddField_Duration(pQuadEditor, CAsset_MapLayerQuads::QUAD_ANIMATIONOFFSET, _LSTRING("动画延迟"));
 	}
 	
 	{
 		gui::CVListLayout* pQuadEditor = new CSubItemEditor_QuadVertex(AssetsEditor(), CAsset_MapLayerQuads::VERTEX0);
 		pTab->Add(pQuadEditor);
 		
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX0_X, CAsset_MapLayerQuads::QUAD_VERTEX0_Y, _LSTRING("Position"));
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV0_X, CAsset_MapLayerQuads::QUAD_UV0_Y, _LSTRING("Texture"));
-		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR0, _LSTRING("Color"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX0_X, CAsset_MapLayerQuads::QUAD_VERTEX0_Y, _LSTRING("坐标"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV0_X, CAsset_MapLayerQuads::QUAD_UV0_Y, _LSTRING("材质"));
+		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR0, _LSTRING("颜色"));
 	}
 	
 	{
 		gui::CVListLayout* pQuadEditor = new CSubItemEditor_QuadVertex(AssetsEditor(), CAsset_MapLayerQuads::VERTEX1);
 		pTab->Add(pQuadEditor);
 		
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX1_X, CAsset_MapLayerQuads::QUAD_VERTEX1_Y, _LSTRING("Position"));
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV1_X, CAsset_MapLayerQuads::QUAD_UV1_Y, _LSTRING("Texture"));
-		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR1, _LSTRING("Color"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX1_X, CAsset_MapLayerQuads::QUAD_VERTEX1_Y, _LSTRING("坐标"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV1_X, CAsset_MapLayerQuads::QUAD_UV1_Y, _LSTRING("材质"));
+		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR1, _LSTRING("颜色"));
 	}
 	
 	{
 		gui::CVListLayout* pQuadEditor = new CSubItemEditor_QuadVertex(AssetsEditor(), CAsset_MapLayerQuads::VERTEX2);
 		pTab->Add(pQuadEditor);
 		
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX2_X, CAsset_MapLayerQuads::QUAD_VERTEX2_Y, _LSTRING("Position"));
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV2_X, CAsset_MapLayerQuads::QUAD_UV2_Y, _LSTRING("Texture"));
-		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR2, _LSTRING("Color"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX2_X, CAsset_MapLayerQuads::QUAD_VERTEX2_Y, _LSTRING("坐标"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV2_X, CAsset_MapLayerQuads::QUAD_UV2_Y, _LSTRING("材质"));
+		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR2, _LSTRING("颜色"));
 	}
 	
 	{
 		gui::CVListLayout* pQuadEditor = new CSubItemEditor_QuadVertex(AssetsEditor(), CAsset_MapLayerQuads::VERTEX3);
 		pTab->Add(pQuadEditor);
 		
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX3_X, CAsset_MapLayerQuads::QUAD_VERTEX3_Y, _LSTRING("Position"));
-		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV3_X, CAsset_MapLayerQuads::QUAD_UV3_Y, _LSTRING("Texture"));
-		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR3, _LSTRING("Color"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_VERTEX3_X, CAsset_MapLayerQuads::QUAD_VERTEX3_Y, _LSTRING("坐标"));
+		AddField_Vec2(pQuadEditor, CAsset_MapLayerQuads::QUAD_UV3_X, CAsset_MapLayerQuads::QUAD_UV3_Y, _LSTRING("材质"));
+		AddField_Color(pQuadEditor, CAsset_MapLayerQuads::QUAD_COLOR3, _LSTRING("颜色"));
 	}
 	
 	return pTab;
@@ -1101,7 +1101,7 @@ protected:
 		const ASSET* pLayer = AssetsManager()->template GetAsset< ASSET >(m_pAssetsEditor->GetEditedAssetPath());
 		if(pLayer)
 		{
-			CLocalizableString LString(_("Object {int:Id}"));
+			CLocalizableString LString(_("对象 {int:Id}"));
 			
 			typename ASSET::CIteratorObject Iter;
 			int Counter = 1;
@@ -1235,7 +1235,7 @@ public:
 						
 						for(int i=0; i<Object.GetVertexArraySize(); i++)
 						{
-							str_format(aBuf, sizeof(aBuf), "Vertex %d", i+1);
+							str_format(aBuf, sizeof(aBuf), "顶角 %d", i+1);
 							CSubPath VertexPath = ASSET::SubPath_ObjectVertex(m_pAssetsEditor->GetUniqueEditedSubPath().GetId(), i);
 							
 							Add(new CVertexItem(m_pAssetsEditor, VertexPath, aBuf), false);
@@ -1260,64 +1260,64 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapLayerObjects_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map Layer Objects"), AssetsEditor()->m_Path_Sprite_IconPolygon);
+	AddTab(pTab, _LSTRING("图层对象"), AssetsEditor()->m_Path_Sprite_IconPolygon);
 	
 	AddField_AssetProperties(pTab);
 	
-	AddField_MapGroups(pTab, CAsset_MapLayerObjects::PARENTPATH, _LSTRING("Group"));
+	AddField_MapGroups(pTab, CAsset_MapLayerObjects::PARENTPATH, _LSTRING("组"));
 	pTab->Add(new CSubItemList_Object<CAsset_MapLayerObjects>(AssetsEditor()), true);
 	pTab->Add(new CSubItemList_Object_Vertex<CAsset_MapLayerObjects>(AssetsEditor()), true);
 	
 	gui::CVListLayout* pObjectEditor = new CSubItemEditor(AssetsEditor(), CAsset_MapLayerObjects::TYPE_OBJECT);
 	pTab->Add(pObjectEditor, false);
 	
-	AddField_Asset(pObjectEditor, CAsset_MapLayerObjects::OBJECT_STYLEPATH, CAsset_PathMaterial::TypeId, _LSTRING("Style"));	
-	AddField_Vec2(pObjectEditor, CAsset_MapLayerObjects::OBJECT_POSITION_X, CAsset_MapLayerObjects::OBJECT_POSITION_Y, _LSTRING("Position"));	
-	AddField_Vec2(pObjectEditor, CAsset_MapLayerObjects::OBJECT_SIZE_X, CAsset_MapLayerObjects::OBJECT_SIZE_Y, _LSTRING("Size"));	
-	AddField_Angle(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ANGLE, _LSTRING("Angle"));
-	AddField_Animations(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ANIMATIONPATH, _LSTRING("Animation"));
-	AddField_Duration(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ANIMATIONOFFSET, _LSTRING("Animation Offset"));
+	AddField_Asset(pObjectEditor, CAsset_MapLayerObjects::OBJECT_STYLEPATH, CAsset_PathMaterial::TypeId, _LSTRING("风格"));	
+	AddField_Vec2(pObjectEditor, CAsset_MapLayerObjects::OBJECT_POSITION_X, CAsset_MapLayerObjects::OBJECT_POSITION_Y, _LSTRING("坐标"));	
+	AddField_Vec2(pObjectEditor, CAsset_MapLayerObjects::OBJECT_SIZE_X, CAsset_MapLayerObjects::OBJECT_SIZE_Y, _LSTRING("大小"));	
+	AddField_Angle(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ANGLE, _LSTRING("方向"));
+	AddField_Animations(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ANIMATIONPATH, _LSTRING("动画"));
+	AddField_Duration(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ANIMATIONOFFSET, _LSTRING("动画延迟"));
 	
 	{
 		CMemberComboBox* pComboBox = new CMemberComboBox(AssetsEditor(), CAsset_MapLayerObjects::OBJECT_PATHTYPE);
-		pComboBox->Add(_LSTRING("Open"), AssetsEditor()->m_Path_Sprite_IconPathOpen);
-		pComboBox->Add(_LSTRING("Closed"), AssetsEditor()->m_Path_Sprite_IconPathClosed);
-		pComboBox->Add(_LSTRING("Infinite"), AssetsEditor()->m_Path_Sprite_IconPathInfinite);
-		AddField(pObjectEditor, pComboBox, _LSTRING("Path type"));
+		pComboBox->Add(_LSTRING("打开"), AssetsEditor()->m_Path_Sprite_IconPathOpen);
+		pComboBox->Add(_LSTRING("关闭"), AssetsEditor()->m_Path_Sprite_IconPathClosed);
+		pComboBox->Add(_LSTRING("无限"), AssetsEditor()->m_Path_Sprite_IconPathInfinite);
+		AddField(pObjectEditor, pComboBox, _LSTRING("路径类型"));
 	}
 	
 	{
 		CMemberComboBox* pComboBox = new CMemberComboBox(AssetsEditor(), CAsset_MapLayerObjects::OBJECT_LINETYPE);
-		pComboBox->Add(_LSTRING("Hidden"), AssetsEditor()->m_Path_Sprite_IconLineHide);
-		pComboBox->Add(_LSTRING("Rendered"), AssetsEditor()->m_Path_Sprite_IconLineShow);
-		AddField(pObjectEditor, pComboBox, _LSTRING("Line type"));
+		pComboBox->Add(_LSTRING("隐藏"), AssetsEditor()->m_Path_Sprite_IconLineHide);
+		pComboBox->Add(_LSTRING("显示"), AssetsEditor()->m_Path_Sprite_IconLineShow);
+		AddField(pObjectEditor, pComboBox, _LSTRING("线段类型"));
 	}
 	
 	{
 		CMemberComboBox* pComboBox = new CMemberComboBox(AssetsEditor(), CAsset_MapLayerObjects::OBJECT_FILLTYPE);
-		pComboBox->Add(_LSTRING("None"), AssetsEditor()->m_Path_Sprite_IconFillNone);
-		pComboBox->Add(_LSTRING("Inner"), AssetsEditor()->m_Path_Sprite_IconFillInner);
-		pComboBox->Add(_LSTRING("Outer"), AssetsEditor()->m_Path_Sprite_IconFillOuter);
-		AddField(pObjectEditor, pComboBox, _LSTRING("Fill type"));
+		pComboBox->Add(_LSTRING("无"), AssetsEditor()->m_Path_Sprite_IconFillNone);
+		pComboBox->Add(_LSTRING("内部"), AssetsEditor()->m_Path_Sprite_IconFillInner);
+		pComboBox->Add(_LSTRING("外部"), AssetsEditor()->m_Path_Sprite_IconFillOuter);
+		AddField(pObjectEditor, pComboBox, _LSTRING("填充类型"));
 	}
 	
-	AddField_Integer(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ORTHOTESSELATION, _LSTRING("Orthogonal tesselation"));
+	AddField_Integer(pObjectEditor, CAsset_MapLayerObjects::OBJECT_ORTHOTESSELATION, _LSTRING("正交细分(高级)"));
 	
 	gui::CVListLayout* pVertexEditor = new CSubItemEditor(AssetsEditor(), CAsset_MapLayerObjects::TYPE_OBJECT_VERTEX);
 	pTab->Add(pVertexEditor, false);
 	
-	AddField_Vec2(pVertexEditor, CAsset_MapLayerObjects::OBJECT_VERTEX_POSITION_X, CAsset_MapLayerObjects::OBJECT_VERTEX_POSITION_Y, _LSTRING("Position"));	
-	AddField_Color(pVertexEditor, CAsset_MapLayerObjects::OBJECT_VERTEX_COLOR, _LSTRING("Color"));
-	AddField_Float(pVertexEditor, CAsset_MapLayerObjects::OBJECT_VERTEX_WEIGHT, _LSTRING("Weight"));
+	AddField_Vec2(pVertexEditor, CAsset_MapLayerObjects::OBJECT_VERTEX_POSITION_X, CAsset_MapLayerObjects::OBJECT_VERTEX_POSITION_Y, _LSTRING("坐标"));	
+	AddField_Color(pVertexEditor, CAsset_MapLayerObjects::OBJECT_VERTEX_COLOR, _LSTRING("颜色"));
+	AddField_Float(pVertexEditor, CAsset_MapLayerObjects::OBJECT_VERTEX_WEIGHT, _LSTRING("优先级"));
 	
 	{
 		CMemberComboBox* pComboBox = new CMemberComboBox(AssetsEditor(), CAsset_MapLayerObjects::OBJECT_VERTEX_SMOOTHNESS);
-		pComboBox->Add(_LSTRING("Corner"), AssetsEditor()->m_Path_Sprite_IconVertexCorner);
-		pComboBox->Add(_LSTRING("Free"), AssetsEditor()->m_Path_Sprite_IconVertexFree);
-		pComboBox->Add(_LSTRING("Aligned"), AssetsEditor()->m_Path_Sprite_IconVertexAligned);
-		pComboBox->Add(_LSTRING("Symetric"), AssetsEditor()->m_Path_Sprite_IconVertexSymetric);
-		pComboBox->Add(_LSTRING("Automatic"), AssetsEditor()->m_Path_Sprite_IconVertexSmooth);
-		AddField(pVertexEditor, pComboBox, _LSTRING("Smoothness type"));
+		pComboBox->Add(_LSTRING("角"), AssetsEditor()->m_Path_Sprite_IconVertexCorner);
+		pComboBox->Add(_LSTRING("自由"), AssetsEditor()->m_Path_Sprite_IconVertexFree);
+		pComboBox->Add(_LSTRING("对齐"), AssetsEditor()->m_Path_Sprite_IconVertexAligned);
+		pComboBox->Add(_LSTRING("对称"), AssetsEditor()->m_Path_Sprite_IconVertexSymetric);
+		pComboBox->Add(_LSTRING("自动"), AssetsEditor()->m_Path_Sprite_IconVertexSmooth);
+		AddField(pVertexEditor, pComboBox, _LSTRING("平滑分类"));
 	}
 	
 	return pTab;
@@ -1329,15 +1329,15 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapZoneTiles_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map Zone Tiles"), AssetsEditor()->m_Path_Sprite_IconZoneTiles);
+	AddTab(pTab, _LSTRING("地图区块"), AssetsEditor()->m_Path_Sprite_IconZoneTiles);
 	
 	AddField_AssetProperties(pTab);
 		
-	AddField_Integer(pTab, CAsset_MapZoneTiles::POSITIONX, _LSTRING("Position X"));
-	AddField_Integer(pTab, CAsset_MapZoneTiles::POSITIONY, _LSTRING("Position Y"));
-	AddField_Integer(pTab, CAsset_MapZoneTiles::TILE_WIDTH, _LSTRING("Width"));	
-	AddField_Integer(pTab, CAsset_MapZoneTiles::TILE_HEIGHT, _LSTRING("Height"));
-	AddField_Asset(pTab, CAsset_MapZoneTiles::ZONETYPEPATH, CAsset_ZoneType::TypeId, _LSTRING("Zone type"));
+	AddField_Integer(pTab, CAsset_MapZoneTiles::POSITIONX, _LSTRING("X轴"));
+	AddField_Integer(pTab, CAsset_MapZoneTiles::POSITIONY, _LSTRING("Y轴"));
+	AddField_Integer(pTab, CAsset_MapZoneTiles::TILE_WIDTH, _LSTRING("宽度"));	
+	AddField_Integer(pTab, CAsset_MapZoneTiles::TILE_HEIGHT, _LSTRING("长度"));
+	AddField_Asset(pTab, CAsset_MapZoneTiles::ZONETYPEPATH, CAsset_ZoneType::TypeId, _LSTRING("区块类型"));
 	
 	return pTab;
 }
@@ -1348,37 +1348,37 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapZoneObjects_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map Zone Objects"), AssetsEditor()->m_Path_Sprite_IconZoneObject);
+	AddTab(pTab, _LSTRING("地图区块对象"), AssetsEditor()->m_Path_Sprite_IconZoneObject);
 	
 	AddField_AssetProperties(pTab);
 	
-	AddField_Asset(pTab, CAsset_MapZoneTiles::ZONETYPEPATH, CAsset_ZoneType::TypeId, _LSTRING("Zone type"));
+	AddField_Asset(pTab, CAsset_MapZoneTiles::ZONETYPEPATH, CAsset_ZoneType::TypeId, _LSTRING("区块类型"));
 	pTab->Add(new CSubItemList_Object<CAsset_MapZoneObjects>(AssetsEditor()), true);
 	pTab->Add(new CSubItemList_Object_Vertex<CAsset_MapZoneObjects>(AssetsEditor()), true);
 	
 	gui::CVListLayout* pObjectEditor = new CSubItemEditor(AssetsEditor(), CAsset_MapZoneObjects::TYPE_OBJECT);
 	pTab->Add(pObjectEditor, false);
 	
-	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_POSITION_X, CAsset_MapZoneObjects::OBJECT_POSITION_Y, _LSTRING("Position"));	
-	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_SIZE_X, CAsset_MapZoneObjects::OBJECT_SIZE_Y, _LSTRING("Size"));	
-	AddField_Angle(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANGLE, _LSTRING("Angle"));
-	AddField_Integer(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ZONEINDEX, _LSTRING("Zone Index"));
-	AddField_Animations(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONPATH, _LSTRING("Animation"));
-	AddField_Duration(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONOFFSET, _LSTRING("Animation Offset"));
+	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_POSITION_X, CAsset_MapZoneObjects::OBJECT_POSITION_Y, _LSTRING("坐标"));	
+	AddField_Vec2(pObjectEditor, CAsset_MapZoneObjects::OBJECT_SIZE_X, CAsset_MapZoneObjects::OBJECT_SIZE_Y, _LSTRING("大小"));	
+	AddField_Angle(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANGLE, _LSTRING("角度"));
+	AddField_Integer(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ZONEINDEX, _LSTRING("区块"));
+	AddField_Animations(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONPATH, _LSTRING("动画"));
+	AddField_Duration(pObjectEditor, CAsset_MapZoneObjects::OBJECT_ANIMATIONOFFSET, _LSTRING("动画延迟"));
 	
 	gui::CVListLayout* pVertexEditor = new CSubItemEditor(AssetsEditor(), CAsset_MapZoneObjects::TYPE_OBJECT_VERTEX);
 	pTab->Add(pVertexEditor, false);
 	
-	AddField_Vec2(pVertexEditor, CAsset_MapZoneObjects::OBJECT_VERTEX_POSITION_X, CAsset_MapZoneObjects::OBJECT_VERTEX_POSITION_Y, _LSTRING("Position"));
+	AddField_Vec2(pVertexEditor, CAsset_MapZoneObjects::OBJECT_VERTEX_POSITION_X, CAsset_MapZoneObjects::OBJECT_VERTEX_POSITION_Y, _LSTRING("坐标"));
 	
 	{
 		CMemberComboBox* pComboBox = new CMemberComboBox(AssetsEditor(), CAsset_MapZoneObjects::OBJECT_VERTEX_SMOOTHNESS);
-		pComboBox->Add(_LSTRING("Corner"), AssetsEditor()->m_Path_Sprite_IconVertexCorner);
-		pComboBox->Add(_LSTRING("Free"), AssetsEditor()->m_Path_Sprite_IconVertexFree);
-		pComboBox->Add(_LSTRING("Aligned"), AssetsEditor()->m_Path_Sprite_IconVertexAligned);
-		pComboBox->Add(_LSTRING("Symetric"), AssetsEditor()->m_Path_Sprite_IconVertexSymetric);
-		pComboBox->Add(_LSTRING("Automatic"), AssetsEditor()->m_Path_Sprite_IconVertexSmooth);
-		AddField(pVertexEditor, pComboBox, _LSTRING("Smoothness type"));
+		pComboBox->Add(_LSTRING("角"), AssetsEditor()->m_Path_Sprite_IconVertexCorner);
+		pComboBox->Add(_LSTRING("自由"), AssetsEditor()->m_Path_Sprite_IconVertexFree);
+		pComboBox->Add(_LSTRING("对齐"), AssetsEditor()->m_Path_Sprite_IconVertexAligned);
+		pComboBox->Add(_LSTRING("对称"), AssetsEditor()->m_Path_Sprite_IconVertexSymetric);
+		pComboBox->Add(_LSTRING("自动"), AssetsEditor()->m_Path_Sprite_IconVertexSmooth);
+		AddField(pVertexEditor, pComboBox, _LSTRING("平滑分类"));
 	}
 	
 	return pTab;
@@ -1407,7 +1407,7 @@ protected:
 				if(pEntityType)
 					Add(new CSubItem(m_pAssetsEditor, *Iter, pEntityType->GetName(), m_pAssetsEditor->m_Path_Sprite_IconEntities), false);
 				else
-					Add(new CSubItem(m_pAssetsEditor, *Iter, _LSTRING("Unknown entity"), m_pAssetsEditor->m_Path_Sprite_IconEntities), false);
+					Add(new CSubItem(m_pAssetsEditor, *Iter, _LSTRING("未知实体"), m_pAssetsEditor->m_Path_Sprite_IconEntities), false);
 			}
 			
 			m_UpdateNeeded = false;
@@ -1424,7 +1424,7 @@ gui::CVScrollLayout* CAssetsInspector::CreateTab_MapEntities_Asset()
 {
 	gui::CVScrollLayout* pTab = new gui::CVScrollLayout(Context());
 	pTab->Disable();
-	AddTab(pTab, _LSTRING("Map Entities"), AssetsEditor()->m_Path_Sprite_IconEntities);
+	AddTab(pTab, _LSTRING("地图实体"), AssetsEditor()->m_Path_Sprite_IconEntities);
 	
 	AddField_AssetProperties(pTab);
 	

@@ -102,7 +102,7 @@ public:
 
 void CAssetsInspector::AddField_AssetProperties(gui::CVScrollLayout* pTab)
 {
-	AddField(pTab, new CAssetNameEdit(AssetsEditor()), _LSTRING("Name"));
+	AddField(pTab, new CAssetNameEdit(AssetsEditor()), _LSTRING("名字"));
 	
 	pTab->AddSeparator();
 }
@@ -814,7 +814,7 @@ public:
 				if(m_AssetPath.IsNull())
 				{
 					SetIcon(m_pPopup->m_pAssetsEditor->m_Path_Sprite_IconNone);
-					SetText(_LSTRING("None"));
+					SetText(_LSTRING("无"));
 				}
 				else
 				{
@@ -1037,7 +1037,7 @@ public:
 			if(Value.IsNull())
 			{
 				SetIcon(m_pAssetsEditor->m_Path_Sprite_IconNone);
-				SetText(_LSTRING("None"));
+				SetText(_LSTRING("无"));
 			}
 			else
 			{
@@ -1141,7 +1141,7 @@ public:
 				if(m_AssetPath.IsNull())
 				{
 					SetIcon(m_pPopup->m_pAssetsEditor->m_Path_Sprite_IconNone);
-					SetText(_LSTRING("None"));
+					SetText(_LSTRING("无"));
 				}
 				else
 				{
@@ -1276,7 +1276,7 @@ public:
 			if(Value.IsNull() || BonePath.IsNull())
 			{
 				SetIcon(m_pAssetsEditor->m_Path_Sprite_IconNone);
-				SetText(_LSTRING("None"));
+				SetText(_LSTRING("无"));
 			}
 			else
 			{
@@ -1338,7 +1338,7 @@ public:
 				if(m_AssetPath.IsNull())
 				{
 					SetIcon(m_pPopup->m_pAssetsEditor->m_Path_Sprite_IconNone);
-					SetText(_LSTRING("None"));
+					SetText(_LSTRING("无"));
 				}
 				else
 				{
@@ -1473,7 +1473,7 @@ public:
 			if(Value.IsNull() || LayerPath.IsNull())
 			{
 				SetIcon(m_pAssetsEditor->m_Path_Sprite_IconNone);
-				SetText(_LSTRING("None"));
+				SetText(_LSTRING("无"));
 			}
 			else
 			{
