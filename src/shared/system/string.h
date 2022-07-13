@@ -254,9 +254,9 @@ void str_append_num(char *dst, const char *src, int dst_size, int num);
 template<int INITIALSIZE>
 class _dynamic_string
 {
-private:
 	char* m_pBuffer;
 	int m_MaxSize;
+public:
 	
 	inline void copy(const char* pBuffer)
 	{

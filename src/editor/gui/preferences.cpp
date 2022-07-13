@@ -23,8 +23,30 @@
 #include <client/gui/filler.h>
 #include <client/gui/slider.h>
 #include <client/gui/bind-edit.h>
+#include <shared/components/localization.h>
 
 #include <algorithm>
+
+/* LANGUAGE BUTTON ****************************************************/
+
+class CLanguageButton : public gui::CButton
+{
+private:
+	dynamic_string m_Filename;
+	char m_aFilename[128];
+	
+	virtual void MouseClickAction()
+	{
+		Localization()->m_Cfg_MainLanguage.copy(m_Filename);
+	}
+
+public:
+	CLanguageButton(CGui* pContext, const char* pName, const char* pFilename) :
+		gui::CButton(pContext, pName)
+	{
+		str_copy(m_aFilename, pFilename, sizeof(m_aFilename));
+	}
+};
 
 class CCloseButton : public gui::CButton
 {
@@ -62,6 +84,25 @@ CPreferences::CPreferences(CGuiEditor* pAssetsEditor) :
 			pHList->Add(new gui::CLabel(Context(), _LSTRING("Default author name")), true);
 			pHList->Add(new gui::CExternalTextEdit_DynamicString(Context(), &AssetsEditor()->m_Cfg_DefaultAuthor), true);
 			pLayout->Add(pHList, false);
+		}
+
+		{
+
+			gui::CHListLayout* pHList = new gui::CHListLayout(Context());
+			pHList->Add(pLayout, true);
+
+			pLayout->SetBoxStyle(m_pAssetsEditor->m_Path_Box_Dialog);
+			pLayout->Add(new gui::CLabelHeader(Context(), _("Language")), false);
+
+			gui::CVScrollLayout* pLanguageList = new gui::CVScrollLayout(Context());
+			pLanguageList->SetBoxStyle(m_pAssetsEditor->m_Path_Box_Dialog);
+			pLayout->Add(pLanguageList, true);
+
+			pLanguageList->Add(new CLanguageButton(Context(), "", ""), false);
+			for(int i=0; i<Localization()->m_pLanguages.size(); i++)
+			{
+				pLanguageList->Add(new CLanguageButton(Context(), Localization()->m_pLanguages[i]->GetName(), Localization()->m_pLanguages[i]->GetFilename()), false);
+			}
 		}
 		
 		pTabs->AddTab(pLayout, _LSTRING("General"), AssetsEditor()->m_Path_Sprite_IconSystem);
