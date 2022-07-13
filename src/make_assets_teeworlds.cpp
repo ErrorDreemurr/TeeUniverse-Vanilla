@@ -113,25 +113,25 @@ int main(int argc, char* argv[])
 		GroupId_Death = pAsset->AddGroup();
 		GroupId_Entities = pAsset->AddGroup();
 		
-		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Physics), "Physics");
-		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Death), "Death");
-		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Entities), "Entities");
+		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Physics), "物理");
+		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Death), "死亡");
+		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Entities), "实体");
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-		pAsset->SetIndexTitle(SubPath, "Air");
+		pAsset->SetIndexTitle(SubPath, "空气");
 		pAsset->SetIndexColor(SubPath, vec4(1.0f, 1.0f, 1.0f, 0.0f));
 		pAsset->SetIndexGroup(SubPath, GroupId_Physics);
 		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-		pAsset->SetIndexTitle(SubPath, "Hookable Ground");
+		pAsset->SetIndexTitle(SubPath, "可以钩的区域");
 		pAsset->SetIndexColor(SubPath, 1.0f);
 		pAsset->SetIndexBorderIndex(SubPath, 1);
 		pAsset->SetIndexGroup(SubPath, GroupId_Physics);
 		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-		pAsset->SetIndexTitle(SubPath, "Death");
+		pAsset->SetIndexTitle(SubPath, "死亡区域");
 		pAsset->SetIndexColor(SubPath, 1.0f);
 		pAsset->SetIndexBorderIndex(SubPath, 2);
 		pAsset->SetIndexBorderColor(SubPath, vec4(1.0f, 0.0f, 0.0f, 1.0f));
@@ -139,7 +139,7 @@ int main(int argc, char* argv[])
 		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-		pAsset->SetIndexTitle(SubPath, "Unhookable Ground");
+		pAsset->SetIndexTitle(SubPath, "不可钩区域");
 		pAsset->SetIndexColor(SubPath, 1.0f);
 		pAsset->SetIndexBorderIndex(SubPath, 1);
 		pAsset->SetIndexBorderColor(SubPath, vec4(149.0f/255.0f, 190.0f/255.0f, 222.0f/255.0f, 1.0f));
@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
 		for(int i = 1;i<=10;i++)
 		{
 			char aBuf[256];
-			str_format(aBuf, sizeof(aBuf), "World %i door", i);
+			str_format(aBuf, sizeof(aBuf), "去往%i号世界の大门", i);
 			CREATE_WORLDCHANGE_ZONE(aBuf, i)
 			NumZones++;
 		}
@@ -162,7 +162,7 @@ int main(int argc, char* argv[])
 
 		{	
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Spawn");
+			pAsset->SetIndexTitle(SubPath, "出生点");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 13);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
@@ -171,7 +171,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Red Spawn");
+			pAsset->SetIndexTitle(SubPath, "红队出生点");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 14);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
@@ -180,7 +180,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Blue Spawn");
+			pAsset->SetIndexTitle(SubPath, "蓝队出生点");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 15);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
@@ -189,7 +189,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Red Flag");
+			pAsset->SetIndexTitle(SubPath, "红队旗帜");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 13);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
@@ -198,7 +198,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Blue Flag");
+			pAsset->SetIndexTitle(SubPath, "蓝队旗帜");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 13);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
@@ -207,7 +207,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Health");
+			pAsset->SetIndexTitle(SubPath, "血");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 1);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 100.0f, 160.0f, 1.0f));
@@ -216,7 +216,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Armor");
+			pAsset->SetIndexTitle(SubPath, "甲");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 1);
 			pAsset->SetIndexBorderColor(SubPath, vec4(10.0f, 100.0f, 160.0f, 1.0f));
