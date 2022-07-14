@@ -741,7 +741,7 @@ protected:
 
 	public:
 		CAddBgGroupButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu, const CAssetPath& AssetPath) :
-			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("Add Background Group"), pAssetsEditor->m_Path_Sprite_IconFolder)
+			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("添加背景层"), pAssetsEditor->m_Path_Sprite_IconFolder)
 		{ }
 	};
 	
@@ -778,7 +778,7 @@ protected:
 
 	public:
 		CAddFgGroupButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu, const CAssetPath& AssetPath) :
-			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("Add Foreground Group"), pAssetsEditor->m_Path_Sprite_IconFolder)
+			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("添加前景层"), pAssetsEditor->m_Path_Sprite_IconFolder)
 		{ }
 	};
 	
@@ -1206,7 +1206,7 @@ protected:
 
 	public:
 		CAddTileLayerButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu, const CAssetPath& AssetPath) :
-			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("Add Tile Layer"), pAssetsEditor->m_Path_Sprite_IconTiles)
+			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("增加方格层"), pAssetsEditor->m_Path_Sprite_IconTiles)
 		{ }
 	};
 	
@@ -1224,7 +1224,7 @@ protected:
 				CAsset_MapLayerQuads* pLayer = AssetsManager()->NewAsset<CAsset_MapLayerQuads>(&LayerPath, m_AssetPath.GetPackageId(), Token);
 				if(pLayer)
 				{
-					AssetsManager()->TryChangeAssetName(LayerPath, "quads", Token);
+					AssetsManager()->TryChangeAssetName(LayerPath, "贴图", Token);
 					pLayer->SetParentPath(m_AssetPath);
 					
 					int Id = AssetsManager()->AddSubItem(m_AssetPath, CSubPath::Null(), CAsset_MapGroup::TYPE_LAYER, Token);
@@ -1242,7 +1242,7 @@ protected:
 
 	public:
 		CAddQuadLayerButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu, const CAssetPath& AssetPath) :
-			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("Add Quad Layer"), pAssetsEditor->m_Path_Sprite_IconQuad)
+			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("添加贴图层"), pAssetsEditor->m_Path_Sprite_IconQuad)
 		{ }
 	};
 	
@@ -1260,7 +1260,7 @@ protected:
 				CAsset_MapLayerObjects* pLayer = AssetsManager()->NewAsset<CAsset_MapLayerObjects>(&LayerPath, m_AssetPath.GetPackageId(), Token);
 				if(pLayer)
 				{
-					AssetsManager()->TryChangeAssetName(LayerPath, "objects", Token);
+					AssetsManager()->TryChangeAssetName(LayerPath, "对象", Token);
 					pLayer->SetParentPath(m_AssetPath);
 					
 					int Id = AssetsManager()->AddSubItem(m_AssetPath, CSubPath::Null(), CAsset_MapGroup::TYPE_LAYER, Token);
@@ -1278,7 +1278,7 @@ protected:
 
 	public:
 		CAddObjectLayerButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu, const CAssetPath& AssetPath) :
-			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("Add Object Layer"), pAssetsEditor->m_Path_Sprite_IconPolygon)
+			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("添加对象层"), pAssetsEditor->m_Path_Sprite_IconPolygon)
 		{ }
 	};
 	
@@ -1296,7 +1296,7 @@ protected:
 				CAsset_SkeletonSkin* pSkin = AssetsManager()->NewAsset<CAsset_SkeletonSkin>(&SkeletonSkinPath, m_AssetPath.GetPackageId(), Token);
 				if(pSkin)
 				{
-					AssetsManager()->TryChangeAssetName(SkeletonSkinPath, "skin", Token);
+					AssetsManager()->TryChangeAssetName(SkeletonSkinPath, "皮肤", Token);
 					pSkin->SetSkeletonPath(m_AssetPath);
 					m_pAssetsEditor->RefreshAssetsTree();
 				}
@@ -1307,7 +1307,7 @@ protected:
 
 	public:
 		CAddSkeletonSkinButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu, const CAssetPath& AssetPath) :
-			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("Add Skin"), pAssetsEditor->m_Path_Sprite_IconSkeletonSkin)
+			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("添加皮肤"), pAssetsEditor->m_Path_Sprite_IconSkeletonSkin)
 		{ }
 	};
 	
@@ -1325,7 +1325,7 @@ protected:
 				CAsset_SkeletonAnimation* pAnimation = AssetsManager()->NewAsset<CAsset_SkeletonAnimation>(&SkeletonAnimationPath, m_AssetPath.GetPackageId(), Token);
 				if(pAnimation)
 				{
-					AssetsManager()->TryChangeAssetName(SkeletonAnimationPath, "animation", Token);
+					AssetsManager()->TryChangeAssetName(SkeletonAnimationPath, "动画", Token);
 					pAnimation->SetSkeletonPath(m_AssetPath);
 					m_pAssetsEditor->RefreshAssetsTree();
 				}
@@ -1336,7 +1336,7 @@ protected:
 
 	public:
 		CAddSkeletonAnimationButton(CGuiEditor* pAssetsEditor, CContextMenu* pContextMenu, const CAssetPath& AssetPath) :
-			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("Add Animation"), pAssetsEditor->m_Path_Sprite_IconSkeletonAnimation)
+			CAssetMenuButton(pAssetsEditor, pContextMenu, AssetPath, _LSTRING("添加动画"), pAssetsEditor->m_Path_Sprite_IconSkeletonAnimation)
 		{ }
 	};
 	
@@ -1394,13 +1394,13 @@ protected:
 			if(m_AssetPath.GetType() == CAsset_Map::TypeId && !m_SubPath.IsNull())
 			{
 				if(m_SubPath.GetType() == CAsset_Map::TYPE_ZONELAYER)
-					SetText(_LSTRING("Zones"));
+					SetText(_LSTRING("区块"));
 				else if(m_SubPath.GetType() == CAsset_Map::TYPE_ENTITYLAYER)
-					SetText(_LSTRING("Entities"));
+					SetText(_LSTRING("实体"));
 				else if(m_SubPath.GetType() == CAsset_Map::TYPE_BGGROUP)
-					SetText(_LSTRING("Background  Layers"));
+					SetText(_LSTRING("背景层"));
 				else if(m_SubPath.GetType() == CAsset_Map::TYPE_FGGROUP)
-					SetText(_LSTRING("Foreground Layers"));
+					SetText(_LSTRING("前景层"));
 				else
 					SetText(m_pAssetsEditor->GetItemName(m_AssetPath, m_SubPath));
 				
@@ -1939,8 +1939,8 @@ void CPackagesTree::Refresh()
 	gui::CExpand* pWriteExpand = new gui::CExpand(Context());
 	gui::CExpand* pReadExpand = new gui::CExpand(Context());
 	
-	pWriteExpand->SetTitle(new CInactiveText(m_pAssetsEditor, _LSTRING("Edited Packages"), m_pAssetsEditor->m_Path_Sprite_IconNone));
-	pReadExpand->SetTitle(new CInactiveText(m_pAssetsEditor, _LSTRING("Read-Only Packages"), m_pAssetsEditor->m_Path_Sprite_IconNone));
+	pWriteExpand->SetTitle(new CInactiveText(m_pAssetsEditor, _LSTRING("可更改的资源包"), m_pAssetsEditor->m_Path_Sprite_IconNone));
+	pReadExpand->SetTitle(new CInactiveText(m_pAssetsEditor, _LSTRING("只读资源包"), m_pAssetsEditor->m_Path_Sprite_IconNone));
 	
 	Add(pWriteExpand);
 	Add(pReadExpand);

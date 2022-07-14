@@ -64,9 +64,10 @@
 	pAsset->SetIndexUsed(SubPath, false);\
 }
 
-#define CREATE_WORLDCHANGE_ZONE(zonename, id) {\
+#define CREATE_WORLDCHANGE_ZONE(zonename, desc, id) {\
 	SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());\
 	pAsset->SetIndexTitle(SubPath, zonename);\
+	pAsset->SetIndexDescription(SubPath, desc);\
 	pAsset->SetIndexColor(SubPath, 1.0f);\
 	pAsset->SetIndexBorderIndex(SubPath, 1);\
 	pAsset->SetIndexBorderColor(SubPath, vec4(255, 255/id, 255, 1.0f));\
@@ -148,9 +149,12 @@ int main(int argc, char* argv[])
 
 		for(int i = 1;i<=10;i++)
 		{
-			char aBuf[256];
-			str_format(aBuf, sizeof(aBuf), "去往%i号世界の大门", i);
-			CREATE_WORLDCHANGE_ZONE(aBuf, i)
+			char Name[256];
+			char Desc[256];
+			str_format(Name, sizeof(Name), "%i号门", i);
+			str_format(Desc, sizeof(Desc), "通往%i号世界の大门！", i);
+
+			CREATE_WORLDCHANGE_ZONE(Name, Desc, i)
 			NumZones++;
 		}
 

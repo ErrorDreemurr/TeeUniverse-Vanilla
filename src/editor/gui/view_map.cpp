@@ -243,7 +243,7 @@ protected:
 			Add(pLayout);
 			
 			{
-				gui::CLabelHeader* pLabel = new gui::CLabelHeader(Context(), _LSTRING("Zones"));
+				gui::CLabelHeader* pLabel = new gui::CLabelHeader(Context(), _LSTRING("区块"));
 				pLabel->NoTextClipping();
 				pLayout->Add(pLabel, false);
 			}

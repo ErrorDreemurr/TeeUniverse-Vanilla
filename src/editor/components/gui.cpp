@@ -825,13 +825,13 @@ COpenSavePackageDialog::COpenSavePackageDialog(CGuiEditor* pAssetsEditor, int Mo
 			break;
 		case FORMAT_MAP_TW:
 			if(m_Mode == MODE_SAVE)
-				pLayout->Add(new gui::CLabelHeader(Context(), _LSTRING("导出Teeworlds地图")), false);
+				pLayout->Add(new gui::CLabelHeader(Context(), _LSTRING("导入地图")), false);
 			else
-				pLayout->Add(new gui::CLabelHeader(Context(), _LSTRING("导入Teeworlds地图")), false);
+				pLayout->Add(new gui::CLabelHeader(Context(), _LSTRING("导入地图")), false);
 			break;
 		case FORMAT_ZIP:
 			if(m_Mode == MODE_SAVE)
-				pLayout->Add(new gui::CLabelHeader(Context(), _LSTRING("导出Teeworlds地图包含所有地图细节")), false);
+				pLayout->Add(new gui::CLabelHeader(Context(), _LSTRING("完整的导出地图")), false);
 			break;
 		default:
 			if(m_Mode == MODE_SAVE)
@@ -895,13 +895,13 @@ COpenSavePackageDialog::COpenSavePackageDialog(CGuiEditor* pAssetsEditor, int Mo
 				Buffer.clear();
 				fs_storage_path("teeworlds", Buffer);
 				Buffer.append("/maps");
-				pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("Teeworlds原版编辑器的地图"), Buffer.buffer(), false), false);
+				pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("本地地图"), Buffer.buffer(), false), false);
 			}
 			{
 				Buffer.clear();
 				fs_storage_path("teeworlds", Buffer);
 				Buffer.append("/downloadedmaps");
-				pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("Teeworlds下载的地图"), Buffer.buffer(), false), false);
+				pPlaces->Add(new COpenSavePackageDialog_Item_Directory(this, _LSTRING("下载的地图"), Buffer.buffer(), false), false);
 			}
 		}
 		pPlaces->AddSeparator();
@@ -932,7 +932,7 @@ COpenSavePackageDialog::COpenSavePackageDialog(CGuiEditor* pAssetsEditor, int Mo
 		gui::CHListLayout* pHList = new gui::CHListLayout(Context());
 		pLayout->Add(pHList, false);
 		
-		gui::CLabel* pLabel = new gui::CLabel(Context(), _LSTRING("Filename"));
+		gui::CLabel* pLabel = new gui::CLabel(Context(), _LSTRING("文件名"));
 		pLabel->NoTextClipping();
 		pHList->Add(pLabel, false);
 		pHList->Add(new gui::CExternalTextEdit_DynamicString(Context(), &m_Filename), true);
@@ -1180,7 +1180,7 @@ void COpenSavePackageDialog::Save()
 			TextIter = Buffer.append_at(TextIter, ".map");
 			if(!AssetsManager()->Save_Map(Buffer.buffer(), CStorage::TYPE_ABSOLUTE, m_pAssetsEditor->GetEditedPackageId(), m_pAssetsEditor->m_Cfg_DefaultCompatibilityMode))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个地图无法被保存")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("保存失败")));
 			}
 			break;
 		}
@@ -1192,7 +1192,7 @@ void COpenSavePackageDialog::Save()
 			TextIter = Buffer.append_at(TextIter, ".zip");
 			if(!AssetsManager()->Save_ZipWithDependencies(Buffer.buffer(), CStorage::TYPE_ABSOLUTE, m_pAssetsEditor->GetEditedPackageId()))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个资源包无法被保存")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("保存失败")));
 			}
 			break;
 		}
@@ -1204,7 +1204,7 @@ void COpenSavePackageDialog::Save()
 			TextIter = Buffer.append_at(TextIter, ".png");
 			if(!AssetsManager()->Save_Image(Buffer.buffer(), CStorage::TYPE_ABSOLUTE, m_pAssetsEditor->GetEditedAssetPath()))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个图片无法被保存")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("保存失败")));
 			}
 			break;
 		}
@@ -1217,7 +1217,7 @@ void COpenSavePackageDialog::Save()
 			
 			if(!AssetsManager()->Save_AssetsFile(m_pAssetsEditor->GetEditedPackageId(), Buffer.buffer()))
 			{
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个资源包无法被保存")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("保存失败")));
 			}
 			else
 			{
@@ -1249,7 +1249,7 @@ void COpenSavePackageDialog::Open()
 			if(m_Mode == MODE_REPLACE)
 			{
 				if(!UpdateImage(m_pAssetsEditor->SharedKernel(), m_pAssetsEditor->GetEditedAssetPath(), Buffer.buffer(), CStorage::TYPE_ABSOLUTE))
-					m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个图片无法被读取")));
+					m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("读取失败")));
 			}
 			else
 			{
@@ -1262,7 +1262,7 @@ void COpenSavePackageDialog::Open()
 					-1, -1
 				);
 				if(ImagePath.IsNull())
-					m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个图片无法被读取")));
+					m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("读取失败")));
 				else
 				{
 					m_pAssetsEditor->SetEditedAsset(ImagePath, CSubPath::Null());
@@ -1280,7 +1280,7 @@ void COpenSavePackageDialog::Open()
 			TextIter = Buffer.append_at(TextIter, ".map");
 			int PackageId = AssetsManager()->Load_Map(Buffer.buffer(), CStorage::TYPE_ABSOLUTE, m_pAssetsEditor->m_Cfg_DefaultCompatibilityMode);
 			if(PackageId < 0)
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个地图无法导入")));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("读取失败")));
 			else
 			{
 				m_pAssetsEditor->SetEditedPackage(PackageId);
@@ -1305,7 +1305,7 @@ void COpenSavePackageDialog::Open()
 			int PackageId = AssetsManager()->Load_AssetsFile(Buffer.buffer(), &ErrorStack);
 			
 			if(PackageId < 0 || ErrorStack.Size())
-				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("这个资源包无法被读取"), ErrorStack));
+				m_pAssetsEditor->DisplayPopup(new CErrorDialog(m_pAssetsEditor, _LSTRING("读取失败"), ErrorStack));
 			
 			if(PackageId >= 0)
 			{
@@ -1378,7 +1378,7 @@ protected:
 protected:
 	virtual void MouseClickAction()
 	{
-		int PackageId = AssetsManager()->NewPackage("mypackage");
+		int PackageId = AssetsManager()->NewPackage("我的地图");
 		AssetsManager()->SetPackageReadOnly(PackageId, false);
 		AssetsManager()->SetPackageAuthor(PackageId, m_pAssetsEditor->m_Cfg_DefaultAuthor.buffer());
 		AssetsManager()->SetPackageLicense(PackageId, "CC-BY-SA 4.0");
@@ -1454,7 +1454,7 @@ public:
 				SetIcon(m_pAssetsEditor->m_Path_Sprite_IconImage);
 				break;
 			case COpenSavePackageDialog::FORMAT_MAP_TW:
-				SetText(_LSTRING("导入Teeworlds地图"));
+				SetText(_LSTRING("导入地图"));
 				SetIcon(m_pAssetsEditor->m_Path_Sprite_IconLoad);
 				break;
 		}
@@ -1499,10 +1499,10 @@ public:
 		switch(m_Format)
 		{
 			case COpenSavePackageDialog::FORMAT_MAP_TW:
-				SetText(_LSTRING("导出Teeworlds地图"));
+				SetText(_LSTRING("导出地图"));
 				break;
 			case COpenSavePackageDialog::FORMAT_ZIP:
-				SetText(_LSTRING("导出Teeworlds地图并保留所有细节"));
+				SetText(_LSTRING("完整的导出地图"));
 				break;
 		}
 		SetButtonStyle(m_pAssetsEditor->m_Path_Button_Menu);
@@ -1687,7 +1687,7 @@ protected:
 				
 				//Zone, Physics
 				pMapZoneTiles = AssetsManager()->NewAsset<CAsset_MapZoneTiles>(&ZonePath, m_pAssetsEditor->GetEditedPackageId(), Token);
-				AssetsManager()->TryChangeAssetName(ZonePath, "teeworlds", Token);
+				AssetsManager()->TryChangeAssetName(ZonePath, "实体层", Token);
 				SubPath = CAsset_Map::SubPath_ZoneLayer(pMap->AddZoneLayer());
 				pMap->SetZoneLayer(SubPath, ZonePath);
 				
@@ -1698,13 +1698,6 @@ protected:
 					pMapZoneTiles->SetZoneTypePath(AssetsManager()->m_Path_ZoneType_TeeWorlds);
 					pMapZoneTiles->SetParentPath(AssetPath);
 				}
-				
-				//Entites
-				pMapEntities = AssetsManager()->NewAsset<CAsset_MapEntities>(&SubAssetPath, m_pAssetsEditor->GetEditedPackageId(), Token);
-				AssetsManager()->TryChangeAssetName(SubAssetPath, "entities", Token);
-				SubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());
-				pMap->SetEntityLayer(SubPath, SubAssetPath);
-				pMapEntities->SetParentPath(AssetPath);
 				
 				//Static
 				pMapGroup = AssetsManager()->NewAsset<CAsset_MapGroup>(&GroupPath, m_pAssetsEditor->GetEditedPackageId(), Token);
