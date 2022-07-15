@@ -1682,7 +1682,7 @@ protected:
 				CAsset_MapLayerQuads* pMapLayerQuads;
 				CAsset_MapLayerTiles* pMapLayerTiles;
 				CAsset_MapZoneTiles* pMapZoneTiles;
-				CAsset_MapEntities* pMapEntities;
+				//CAsset_MapEntities* pMapEntities;
 				CSubPath SubPath;
 				
 				//Zone, Physics
