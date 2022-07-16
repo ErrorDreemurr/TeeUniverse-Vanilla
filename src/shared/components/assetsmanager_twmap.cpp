@@ -2490,6 +2490,9 @@ bool CAssetsManager::Save_Map(const char* pFileName, int StorageType, int Packag
 									case 3:
 										pGameTiles[J*GameWidth+I].m_Index = ddnet::TILE_NOHOOK;
 										break;
+									default:
+										pGameTiles[J*GameWidth+I].m_Index = pZone->GetTileIndex(TilePath);
+										break;
 								}
 							}
 						}
