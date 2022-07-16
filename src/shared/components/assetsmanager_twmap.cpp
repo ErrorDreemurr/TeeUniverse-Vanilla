@@ -958,11 +958,392 @@ int CAssetsManager::Load_Map(const char* pFileName, int StorageType, int Format)
 									}
 									else
 									{
-										Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
-										if(Zones.m_pTeeWorldsZone)
-											Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
-										else
-											WriteInUnknown = true;
+										switch(pTiles[j*Width+i].m_Index)
+										{
+											case ddnet::ENTITY_SPAWN + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_DUMMYCAPTURE)
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
+													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
+													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												else if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
+													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawn);
+													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_SPAWN_RED + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
+													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnRed);
+													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_SPAWN_BLUE + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
+													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_TWSpawnBlue);
+													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_HEALTH_1 + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
+													pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWHeart);
+													pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_ARMOR_1 + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
+													pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWArmor);
+													pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_POWERUP_NINJA + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
+													pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWNinja);
+													pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_WEAPON_GRENADE + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_FOOT)
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
+													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
+													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												else if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
+													pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWGrenade);
+													pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_WEAPON_RIFLE + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
+													pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWLaserRifle);
+													pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_WEAPON_SHOTGUN + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesWeapon->AddEntity());
+													pEntitiesWeapon->SetEntityTypePath(EntityPath, m_Path_EntityType_TWShotgun);
+													pEntitiesWeapon->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_FLAGSTAND_BLUE + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_DUMMYCAPTURE)
+												{
+													Load_UnivSport();
+													Zones.CreateZone(&Zones.m_pSportZone, Zones.m_SportPath, "sport", m_Path_ZoneType_Sport, Width, Height);
+													if(Zones.m_pSportZone)
+														Zones.m_pSportZone->SetTileIndex(TilePath, 3);
+													else
+														WriteInUnknown = true;
+												}
+												else if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
+													pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagBlue);
+													pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case ddnet::ENTITY_FLAGSTAND_RED + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_DUMMYCAPTURE)
+												{
+													Load_UnivSport();
+													Zones.CreateZone(&Zones.m_pSportZone, Zones.m_SportPath, "sport", m_Path_ZoneType_Sport, Width, Height);
+													if(Zones.m_pSportZone)
+														Zones.m_pSportZone->SetTileIndex(TilePath, 2);
+													else
+														WriteInUnknown = true;
+												}
+												else if(Format == MAPFORMAT_TW)
+												{
+													Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+													if(Zones.m_pTeeWorldsZone)
+														Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesPickup->AddEntity());
+													pEntitiesPickup->SetEntityTypePath(EntityPath, m_Path_EntityType_TWFlagRed);
+													pEntitiesPickup->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												break;
+											}
+											case 12 + ddnet::ENTITY_OFFSET:
+											{
+												if(Format == MAPFORMAT_FOOT)
+												{
+													CSubPath EntityPath = CAsset_MapEntities::SubPath_Entity(pEntitiesSpawn->AddEntity());
+													pEntitiesSpawn->SetEntityTypePath(EntityPath, m_Path_EntityType_SportBall);
+													pEntitiesSpawn->SetEntityPosition(EntityPath, vec2(i*32.0f + 16.0f, j*32.0f + 16.0f));
+												}
+												else if(Format == MAPFORMAT_DDNET)
+												{
+													Load_UnivDDNet();
+													Zones.CreateZone(&Zones.m_pDDGameZone, Zones.m_DDGamePath, "ddnetGame", m_Path_ZoneType_DDGame, Width, Height);
+													if(Zones.m_pDDGameZone)
+														Zones.m_pDDGameZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											case ddnet::TILE_AIR:
+											case ddnet::TILE_SOLID:
+											case ddnet::TILE_DEATH:
+											case ddnet::TILE_NOHOOK:
+											{
+												Zones.CreateZone(&Zones.m_pTeeWorldsZone, Zones.m_TeeWorldsPath, "teeworlds", m_Path_ZoneType_TeeWorlds, Width, Height);
+												if(Zones.m_pTeeWorldsZone)
+													Zones.m_pTeeWorldsZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											//OpenFNG and DDNet
+											case 7:
+											case 8:
+											{
+												if(Format == MAPFORMAT_OPENFNG)
+												{
+													Load_UnivOpenFNG();
+													Zones.CreateZone(&Zones.m_pOpenFNGZone, Zones.m_OpenFNGPath, "openfng", m_Path_ZoneType_OpenFNG, Width, Height);
+													if(Zones.m_pOpenFNGZone)
+														Zones.m_pOpenFNGZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											case 9:
+											{
+												if(Format == MAPFORMAT_DDNET)
+												{
+													Load_UnivDDNet();
+													Zones.CreateZone(&Zones.m_pDDGameZone, Zones.m_DDGamePath, "ddnetGame", m_Path_ZoneType_DDGame, Width, Height);
+													if(Zones.m_pDDGameZone)
+														Zones.m_pDDGameZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else if(Format == MAPFORMAT_OPENFNG)
+												{
+													Load_UnivOpenFNG();
+													Zones.CreateZone(&Zones.m_pOpenFNGZone, Zones.m_OpenFNGPath, "openfng", m_Path_ZoneType_OpenFNG, Width, Height);
+													if(Zones.m_pOpenFNGZone)
+														Zones.m_pOpenFNGZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											case 10:
+											{
+												if(Format == MAPFORMAT_OPENFNG)
+												{
+													Load_UnivOpenFNG();
+													Zones.CreateZone(&Zones.m_pOpenFNGZone, Zones.m_OpenFNGPath, "openfng", m_Path_ZoneType_OpenFNG, Width, Height);
+													if(Zones.m_pOpenFNGZone)
+														Zones.m_pOpenFNGZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											case 11:
+											case 12:
+											{
+												if(Format == MAPFORMAT_DDNET)
+												{
+													Load_UnivDDNet();
+													Zones.CreateZone(&Zones.m_pDDGameZone, Zones.m_DDGamePath, "ddnetGame", m_Path_ZoneType_DDGame, Width, Height);
+													if(Zones.m_pDDGameZone)
+														Zones.m_pDDGameZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else if(Format == MAPFORMAT_OPENFNG)
+												{
+													Load_UnivOpenFNG();
+													Zones.CreateZone(&Zones.m_pOpenFNGZone, Zones.m_OpenFNGPath, "openfng", m_Path_ZoneType_OpenFNG, Width, Height);
+													if(Zones.m_pOpenFNGZone)
+														Zones.m_pOpenFNGZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											case 13:
+											{
+												if(Format == MAPFORMAT_DDNET)
+												{
+													Load_UnivDDNet();
+													Zones.CreateZone(&Zones.m_pDDGameZone, Zones.m_DDGamePath, "ddnetGame", m_Path_ZoneType_DDGame, Width, Height);
+													if(Zones.m_pDDGameZone)
+														Zones.m_pDDGameZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											case 55:
+											case 56:
+											{
+												if(Format == MAPFORMAT_FOOT)
+												{
+													Load_UnivSport();
+													Zones.CreateZone(&Zones.m_pSportZone, Zones.m_SportPath, "sport", m_Path_ZoneType_Sport, Width, Height);
+													if(Zones.m_pSportZone)
+														Zones.m_pSportZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index-53);
+													else
+														WriteInUnknown = true;
+												}
+												else if(Format == MAPFORMAT_DDNET)
+												{
+													Load_UnivDDNet();
+													Zones.CreateZone(&Zones.m_pDDGameZone, Zones.m_DDGamePath, "ddnetGame", m_Path_ZoneType_DDGame, Width, Height);
+													if(Zones.m_pDDGameZone)
+														Zones.m_pDDGameZone->SetTileIndex(TilePath, pTiles[j*Width+i].m_Index);
+													else
+														WriteInUnknown = true;
+												}
+												else
+													WriteInUnknown = true;
+												break;
+											}
+											default:
+												WriteInUnknown = true;
+										}
 									}
 									
 									if(WriteInUnknown)

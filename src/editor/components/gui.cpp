@@ -1682,7 +1682,7 @@ protected:
 				CAsset_MapLayerQuads* pMapLayerQuads;
 				CAsset_MapLayerTiles* pMapLayerTiles;
 				CAsset_MapZoneTiles* pMapZoneTiles;
-				//CAsset_MapEntities* pMapEntities;
+				CAsset_MapEntities* pMapEntities;
 				CSubPath SubPath;
 				
 				//Zone, Physics
@@ -1698,6 +1698,13 @@ protected:
 					pMapZoneTiles->SetZoneTypePath(AssetsManager()->m_Path_ZoneType_TeeWorlds);
 					pMapZoneTiles->SetParentPath(AssetPath);
 				}
+				
+				//Entites
+				pMapEntities = AssetsManager()->NewAsset<CAsset_MapEntities>(&SubAssetPath, m_pAssetsEditor->GetEditedPackageId(), Token);
+				AssetsManager()->TryChangeAssetName(SubAssetPath, "entities", Token);
+				SubPath = CAsset_Map::SubPath_EntityLayer(pMap->AddEntityLayer());
+				pMap->SetEntityLayer(SubPath, SubAssetPath);
+				pMapEntities->SetParentPath(AssetPath);
 				
 				//Static
 				pMapGroup = AssetsManager()->NewAsset<CAsset_MapGroup>(&GroupPath, m_pAssetsEditor->GetEditedPackageId(), Token);
