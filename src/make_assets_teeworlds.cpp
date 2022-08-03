@@ -114,7 +114,7 @@ int main(int argc, char* argv[])
 		GroupId_Death = pAsset->AddGroup();
 		GroupId_Entities = pAsset->AddGroup();
 		
-		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Physics), "物理");
+		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Physics), "区块");
 		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Death), "死亡");
 		pAsset->SetGroup(CAsset_ZoneType::SubPath_Group(GroupId_Entities), "实体");
 		
@@ -125,14 +125,14 @@ int main(int argc, char* argv[])
 		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-		pAsset->SetIndexTitle(SubPath, "可以钩的区域");
+		pAsset->SetIndexTitle(SubPath, "可勾");
 		pAsset->SetIndexColor(SubPath, 1.0f);
 		pAsset->SetIndexBorderIndex(SubPath, 1);
 		pAsset->SetIndexGroup(SubPath, GroupId_Physics);
 		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-		pAsset->SetIndexTitle(SubPath, "死亡区域");
+		pAsset->SetIndexTitle(SubPath, "死亡");
 		pAsset->SetIndexColor(SubPath, 1.0f);
 		pAsset->SetIndexBorderIndex(SubPath, 2);
 		pAsset->SetIndexBorderColor(SubPath, vec4(1.0f, 0.0f, 0.0f, 1.0f));
@@ -140,26 +140,15 @@ int main(int argc, char* argv[])
 		NumZones++;
 		
 		SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-		pAsset->SetIndexTitle(SubPath, "不可钩区域");
+		pAsset->SetIndexTitle(SubPath, "不可勾");
 		pAsset->SetIndexColor(SubPath, 1.0f);
 		pAsset->SetIndexBorderIndex(SubPath, 1);
 		pAsset->SetIndexBorderColor(SubPath, vec4(149.0f/255.0f, 190.0f/255.0f, 222.0f/255.0f, 1.0f));
 		pAsset->SetIndexGroup(SubPath, GroupId_Physics);
 		NumZones++;
 
-		for(int i = 1;i<=10;i++)
-		{
-			char Name[256];
-			char Desc[256];
-			str_format(Name, sizeof(Name), "%i号门", i);
-			str_format(Desc, sizeof(Desc), "通往%i号世界の大门！", i);
-
-			CREATE_WORLDCHANGE_ZONE(Name, Desc, i)
-			NumZones++;
-		}
-
 		// Entities
-		for(int i = NumZones-1;i<191;i++)
+		for(int i = NumZones-1;i<201;i++)
 		{
 			CREATE_ZONEINDEX_NOUSE()
 		}
@@ -187,7 +176,7 @@ int main(int argc, char* argv[])
 			pAsset->SetIndexTitle(SubPath, "蓝队出生点");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 15);
-			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
+			pAsset->SetIndexBorderColor(SubPath, vec4(0f, 0.0f, 255.0f, 1.0f));
 			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
 		}
 
@@ -205,7 +194,7 @@ int main(int argc, char* argv[])
 			pAsset->SetIndexTitle(SubPath, "蓝队旗帜");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 13);
-			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
+			pAsset->SetIndexBorderColor(SubPath, vec4(0.0f, 0.0f, 255.0f, 1.0f));
 			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
 		}
 
@@ -224,6 +213,42 @@ int main(int argc, char* argv[])
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 1);
 			pAsset->SetIndexBorderColor(SubPath, vec4(10.0f, 100.0f, 160.0f, 1.0f));
+			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
+		}
+
+		{
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
+			pAsset->SetIndexTitle(SubPath, "霰弹枪");
+			pAsset->SetIndexColor(SubPath, 1.0f);
+			pAsset->SetIndexBorderIndex(SubPath, 1);
+			pAsset->SetIndexBorderColor(SubPath, vec4(180.0f, 150.0f, 50.0f, 1.0f));
+			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
+		}
+
+		{
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
+			pAsset->SetIndexTitle(SubPath, "Greande");
+			pAsset->SetIndexColor(SubPath, 1.0f);
+			pAsset->SetIndexBorderIndex(SubPath, 1);
+			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
+			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
+		}
+
+		{
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
+			pAsset->SetIndexTitle(SubPath, "忍者");
+			pAsset->SetIndexColor(SubPath, 1.0f);
+			pAsset->SetIndexBorderIndex(SubPath, 1);
+			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 255.0f, 255.0f, 1.0f));
+			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
+		}
+
+		{
+			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
+			pAsset->SetIndexTitle(SubPath, "Rifle");
+			pAsset->SetIndexColor(SubPath, 1.0f);
+			pAsset->SetIndexBorderIndex(SubPath, 1);
+			pAsset->SetIndexBorderColor(SubPath, vec4(0.0f, 0.0f, 255.0f, 1.0f));
 			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
 		}
 	}
