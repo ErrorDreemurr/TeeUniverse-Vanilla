@@ -176,7 +176,7 @@ int main(int argc, char* argv[])
 			pAsset->SetIndexTitle(SubPath, "蓝队出生点");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 15);
-			pAsset->SetIndexBorderColor(SubPath, vec4(0f, 0.0f, 255.0f, 1.0f));
+			pAsset->SetIndexBorderColor(SubPath, vec4(0.0f, 0.0f, 255.0f, 1.0f));
 			pAsset->SetIndexGroup(SubPath, GroupId_Entities);
 		}
 

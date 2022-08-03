@@ -87,7 +87,7 @@ public:
 	}
 	
 	virtual const char* Usage() { return "editor_undo"; }
-	virtual const char* Description() { return "撤回上一步"; }
+	virtual const char* Description() { return "撤回"; }
 };
 
 	//editor_open
@@ -1584,7 +1584,7 @@ protected:
 
 public:
 	CQuitButton(CGuiEditor* pAssetsEditor, CPopup_Menu* pPopupMenu) :
-		gui::CButton(pAssetsEditor, _LSTRING("去世")),
+		gui::CButton(pAssetsEditor, _LSTRING("退出编辑器")),
 		m_pAssetsEditor(pAssetsEditor),
 		m_pPopupMenu(pPopupMenu)
 	{
