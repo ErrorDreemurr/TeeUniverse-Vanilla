@@ -227,7 +227,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Greande");
+			pAsset->SetIndexTitle(SubPath, "榴弹");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 1);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 0.0f, 0.0f, 1.0f));
@@ -236,7 +236,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "忍者");
+			pAsset->SetIndexTitle(SubPath, "忍者刀");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 1);
 			pAsset->SetIndexBorderColor(SubPath, vec4(255.0f, 255.0f, 255.0f, 1.0f));
@@ -245,7 +245,7 @@ int main(int argc, char* argv[])
 
 		{
 			SubPath = CAsset_ZoneType::SubPath_Index(pAsset->AddIndex());
-			pAsset->SetIndexTitle(SubPath, "Rifle");
+			pAsset->SetIndexTitle(SubPath, "激光");
 			pAsset->SetIndexColor(SubPath, 1.0f);
 			pAsset->SetIndexBorderIndex(SubPath, 1);
 			pAsset->SetIndexBorderColor(SubPath, vec4(0.0f, 0.0f, 255.0f, 1.0f));
